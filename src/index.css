@@ -11,3 +11,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.container {
+  display: flex;
+  max-width: 1124px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.card .image {
+  flex: 1;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card .image img {
+  height: 100%;
+  width: 100%;
+  /* object-fit: cover; */
+  object-fit: fill;
+  aspect-ratio: 16 / 9;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card h1 {
+  border-top: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0;
+  font-size: 18px;
+}

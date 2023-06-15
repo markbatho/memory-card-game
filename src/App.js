@@ -1,32 +1,33 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
+import Card from './components/Card';
 
 const flags = [
-  { country: 'Argentina', flag: 'ar' },
-  { country: 'Austria', flag: 'at' },
-  { country: 'Belgium', flag: 'be' },
-  { country: 'Bulgaria', flag: 'bg' },
-  { country: 'Brazil', flag: 'br' },
-  { country: 'Canada', flag: 'ca' },
-  { country: 'Switzerland', flag: 'ch' },
-  { country: 'China', flag: 'cn' },
-  { country: 'Cuba', flag: 'cu' },
-  { country: 'Germany', flag: 'de' },
-  { country: 'Egypt', flag: 'eg' },
-  { country: 'Finland', flag: 'fi' },
-  { country: 'Greece', flag: 'gr' },
-  { country: 'Hungary', flag: 'hu' },
-  { country: 'Israel', flag: 'il' },
-  { country: 'India', flag: 'in' },
-  { country: 'Italy', flag: 'it' },
-  { country: 'Japan', flag: 'jp' },
-  { country: 'South Korea', flag: 'kr' },
-  { country: 'Pakistan', flag: 'pk' },
-  { country: 'Poland', flag: 'pl' },
-  { country: 'Portugal', flag: 'pt' },
-  { country: 'Serbia', flag: 'rs' },
-  { country: 'San Marino', flag: 'sm' },
-  { country: 'USA', flag: 'us' },
+  { id: 0, country: 'Argentina', flag: 'ar' },
+  { id: 1, country: 'Austria', flag: 'at' },
+  { id: 2, country: 'Belgium', flag: 'be' },
+  { id: 3, country: 'Bulgaria', flag: 'bg' },
+  { id: 4, country: 'Brazil', flag: 'br' },
+  { id: 5, country: 'Canada', flag: 'ca' },
+  { id: 6, country: 'Switzerland', flag: 'ch' },
+  { id: 7, country: 'China', flag: 'cn' },
+  { id: 8, country: 'Cuba', flag: 'cu' },
+  { id: 9, country: 'Germany', flag: 'de' },
+  { id: 10, country: 'Egypt', flag: 'eg' },
+  { id: 11, country: 'Finland', flag: 'fi' },
+  { id: 12, country: 'Greece', flag: 'gr' },
+  { id: 13, country: 'Hungary', flag: 'hu' },
+  { id: 14, country: 'Israel', flag: 'il' },
+  { id: 15, country: 'India', flag: 'in' },
+  { id: 16, country: 'Italy', flag: 'it' },
+  { id: 17, country: 'Japan', flag: 'jp' },
+  { id: 18, country: 'South Korea', flag: 'kr' },
+  { id: 19, country: 'Pakistan', flag: 'pk' },
+  { id: 20, country: 'Poland', flag: 'pl' },
+  { id: 21, country: 'Portugal', flag: 'pt' },
+  { id: 22, country: 'Serbia', flag: 'rs' },
+  { id: 23, country: 'San Marino', flag: 'sm' },
+  { id: 24, country: 'USA', flag: 'us' },
 ];
 
 function App() {
@@ -66,7 +67,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello, React!</h1>
+      <div className="container">
+        <div className="cards">
+          {flagsSelected.map((flag) => (
+            <Card key={flag.id} country={flag.country} flagId={flag.flag} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
