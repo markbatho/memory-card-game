@@ -67,6 +67,16 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <div className="container">
+          <h1>Memory Card Game</h1>
+          <div className="scores">
+            <div className="level">Level: {level}</div>
+            <div className="score">Score: {score}</div>
+            <div className="best-score">Best Score: {bestScore}</div>
+          </div>
+        </div>
+      </header>
       <div className="container">
         <div className="cards">
           {flagsSelected.map((flag) => (

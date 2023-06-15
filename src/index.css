@@ -19,11 +19,33 @@ code {
   padding: 0 2rem;
 }
 
+header {
+  display: flex;
+  background-color: #f2f2f2;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+header .container {
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+header .scores {
+  display: flex;
+  gap: 1rem;
+  border-radius: 8px;
+  background-color: white;
+  padding: 1rem;
+}
+
 .cards {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto;
-  gap: 1rem;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-gap: 1rem;
 }
 
 .card {
