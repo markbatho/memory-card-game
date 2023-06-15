@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
+
 const flags = [
   { country: 'Argentina', flag: 'ar' },
   { country: 'Austria', flag: 'at' },
@@ -27,6 +30,40 @@ const flags = [
 ];
 
 function App() {
+  const [flagsAvailable, setFlagsAvailable] = useState(flags.slice());
+  const [flagsSelected, setFlagsSelected] = useState([]);
+  const [flagsClicked, setFlagsClicked] = useState([]);
+  const [level, setLevel] = useState(1);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+
+  useEffect(() => {
+    if (level > 5) {
+      setFlagsAvailable(flags.slice());
+      setFlagsSelected([]);
+      return;
+    }
+
+    const flagsAvailableCopy = flagsAvailable.slice();
+    const flagsSelectedCopy = flagsSelected.slice();
+
+    for (let i = 0; i < 5; i++) {
+      const index = generateRandomNumber(0, flagsAvailableCopy.length - 1);
+      flagsSelectedCopy.push(flagsAvailableCopy[index]);
+      flagsAvailableCopy.splice(index, 1);
+    }
+
+    setFlagsAvailable(flagsAvailableCopy);
+    setFlagsSelected(flagsSelectedCopy);
+  }, [level]);
+
+  function generateRandomNumber(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
   return (
     <div className="App">
       <h1>Hello, React!</h1>
