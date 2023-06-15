@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import Card from './components/Card';
 
@@ -37,11 +36,14 @@ function App() {
   const [level, setLevel] = useState(1);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   useEffect(() => {
-    if (level > 5) {
+    if (level > 5 || isGameOver) {
       setFlagsAvailable(flags.slice());
       setFlagsSelected([]);
+      setIsGameOver(false);
+      setLevel(1);
       return;
     }
 
@@ -56,13 +58,25 @@ function App() {
 
     setFlagsAvailable(flagsAvailableCopy);
     setFlagsSelected(flagsSelectedCopy);
-  }, [level]);
+  }, [level, isGameOver]);
+
+  useEffect(() => {
+    if (flagsSelected.length === 0) return;
+    if (flagsSelected.length === flagsClicked.length) {
+      setFlagsClicked([]);
+      setLevel(level + 1);
+    }
+  }, [flagsClicked]);
 
   function generateRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
 
     return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  function shuffleFlagsSelected() {
+    setFlagsSelected(flagsSelected.slice().sort(() => Math.random() - 0.5));
   }
 
   return (
@@ -80,7 +94,22 @@ function App() {
       <div className="container">
         <div className="cards">
           {flagsSelected.map((flag) => (
-            <Card key={flag.id} country={flag.country} flagId={flag.flag} />
+            <Card
+              key={flag.id}
+              country={flag.country}
+              countryId={flag.id}
+              flagId={flag.flag}
+              shuffle={shuffleFlagsSelected}
+              flagsClicked={flagsClicked}
+              setFlagsClicked={setFlagsClicked}
+              score={score}
+              setScore={setScore}
+              bestScore={bestScore}
+              setBestScore={setBestScore}
+              level={level}
+              setLevel={setLevel}
+              setIsGameOver={setIsGameOver}
+            />
           ))}
         </div>
       </div>
